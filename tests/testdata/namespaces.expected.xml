@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Document xmlns="http://test.finago.com/xml" xmlns:foo="http://test.finago.com/foo">
+	<foo:foo>
+		<!-- Some data to be replaced -->
+		<author>
+			<!--Obfuscated-->
+			<name>Generator mock value for: name_regenerate Very Secret Name</name>
+			<!--Obfuscated-->
+		<personalId>Generator mock value for: num -l 6</personalId>
+		</author>
+		<customers>
+			<customer>
+				<!--Obfuscated-->
+				<name>Generator mock value for: name_regenerate Jean-Luc Picard</name>
+				<!--Obfuscated-->
+				<personalId>Generator mock value for: num -l 7</personalId>
+				<!--Obfuscated-->
+				<bankAccount>Generator mock value for: iban_regenerate FI10 4725 0961 0005 73</bankAccount>
+				<motto>To boldly go, where no one has gone before</motto>
+			</customer>
+			<customer>
+				<!--Obfuscated-->
+				<name>Generator mock value for: name_regenerate Worf</name>
+				<!--Obfuscated-->
+				<personalId>Generator mock value for: num -l 7</personalId>
+				<!--Obfuscated-->
+				<bankAccount>Generator mock value for: iban_regenerate FI3647763216000644</bankAccount>
+				<motto>Qapla'</motto>
+			</customer>
+		</customers>
+		<!-- Some data to be kept -->
+		<foo:bar>
+			<foo:doNotChange>Some values, which should not be changed</foo:doNotChange>
+			<localizations>
+				<!-- To check, that special chars will not be broken -->
+				<localization lang="FI">Joku hyvin tärkeä teksti suomeksi</localization>
+				<localization lang="PL">Jakiś bardzo ważny tekst po polsku</localization>
+			</localizations>
+		</foo:bar>
+	</foo:foo>
+</Document>

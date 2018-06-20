@@ -1,0 +1,20 @@
+{
+  "predef": {
+    "iban": {
+      "gen_value": "iban_regenerate #text",
+      "policy": "cached"
+    }
+  },
+  "xpaths": {
+    "/*[name()='Document']/*[local-name()='foo']/*[name()='author']/*[local-name()='name']": "name_regenerate #text",
+    "//*[name()='personalId']": "num -l #len",
+    "/*[name()='Document']/*[local-name()='foo']/*[name()='customers']/*[name()='customer']/*[local-name()='name']": "name_regenerate #text",
+    "/*[name()='Document']/*[local-name()='foo']/*[name()='customers']/*[name()='customer']/*[name()='bankAccount']": {
+      "predef": "iban"
+    }
+  },
+  "conf": {
+    "comments": true,
+    "multiple_xmls_in_file": true
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "predef": {
+    "proc_iban": {
+      "gen_value": "iban_regenerate #text",
+      "policy": "cached"
+    },
+    "proc_bban": {
+      "gen_value": "bban_regenerate #text -c NO",
+      "policy": "cached"
+    }
+  },
+  "xpaths": {
+    "//*[name()='OrgId']/*[name()='Othr']/*[name()='Id']": "num -l #len",
+    "//*[name()='NtryRef']": "num -l #len",
+    "//*[name()='Ntfctn']/*[name()='Id']": "num -l #len",
+    "//*[name()='Acct' or name()='DbtrAcct' or name()='CdtrAcct']/*[name()='Id']/*[name()='Othr' and *[name()='SchmeNm']/*[name()='Cd']/text()='BBAN']/*[name()='Id']": {"predef": "proc_bban"},
+    "//*[name()='Acct' or name()='DbtrAcct' or name()='CdtrAcct']/*[name()='Id']/*[name()='Othr' and not(*[name()='SchmeNm'])]/*[name()='Id']": {"predef": "proc_bban"},
+    "//*[name()='Acct']/*[name()='Id']/*[name()='Othr' and *[name()='SchmeNm']/*[name()='Cd']/text()='IBAN']/*[name()='Id']": {"predef": "proc_iban"},
+    "//*[name()='Acct']/*[name()='Id']/*[name()='IBAN']": {"predef": "proc_iban"},
+    "/*[name()='Document']/*[name()='BkToCstmrStmt']/*[name()='Stmt']/*[name()='Acct']/*[name()='Ownr']/*[name()='Nm']": "alphanum -l #len",
+    "//*[name()='UltmtDbtr' or name()='UltmtCdtr' or name()='Acct' or name()='Ownr']/*[name()='Nm']": "name_regenerate '#text'",
+    "//*[name()='NtryDtls']/*[name()='TxDtls']/*[name()='RltdPties']/*[name()='CdtrAcct']/*[name()='Id']/*[name()='IBAN']": {
+      "predef": "proc_iban"
+    },
+    "//*[name()='TxDtls']/*[name()='Refs']/*[name()='PmtInfId' or name()='InstrId' or name()='TxId']": "num -l #len",
+    "//*[name()='RltdPties']/*[name()='Cdtr' or name()='Dbtr']/*[name()='Nm']": "name_regenerate #text",
+    "//*[name()='Ustrd']": "name_regenerate '#text'",
+    "//*[name()='AddtlRmtInf']": "name_regenerate '#text'",
+    "//*[name()='Prtry']/*[name()='Cd']": "name_regenerate '#text'",
+    "//*[name()='RmtInf']/*[name()='Strd']/*[name()='CdtrRefInf']/*[name()='Ref']": "name_regenerate #text",
+    "//*[name()='AcctSvcrRef']": "num -l #len",
+    "//*[name()='ChqNb']": "num -l #len",
+    "/*[name()='Document']/*[name()='BkToCstmrStmt']/*[name()='Stmt']/*[name()='Acct']/*[name()='Id']/*[name()='IBAN']": {"predef": "proc_iban"},
+    "//*[name()='PstlAdr']/*[name()='Dept']": "alphanum -l #len",
+    "//*[name()='PstlAdr']/*[name()='SubDept']": "alphanum -l #len",
+    "//*[name()='PstlAdr']/*[name()='StrtNm']": "alphanum -l #len",
+    "//*[name()='PstlAdr']/*[name()='BldgNb']": "num -l #len",
+    "//*[name()='PstlAdr']/*[name()='PstCd']": "num -l #len",
+    "//*[name()='PstlAdr']/*[name()='TwnNm']": "alphanum -l #len",
+    "//*[name()='PstlAdr']/*[name()='CtrySubDvsn']": "alphanum -l #len",
+    "//*[name()='PstlAdr']/*[name()='AdrLine']": "alphanum -l #len"
+  },
+  "conf" : {
+    "comments": true,
+    "multiple_xmls_in_file": true
+  }
+}

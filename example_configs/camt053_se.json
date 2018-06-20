@@ -1,0 +1,41 @@
+{
+  "predef": {
+    "proc_iban": {
+      "gen_value": "iban_regenerate #text",
+      "policy": "cached"
+    }
+  },
+  "xpaths": {
+    "//*[name()='OrgId']/*[name()='Othr']/*[name()='Id']": "num -l #len",
+    "/*[name()='Document']/*[name()='BkToCstmrStmt']/*[name()='Stmt']/*[name()='Acct']/*[name()='Id']/*[name()='Othr' and *[name()='SchmeNm']/*[name()='Cd']/text()='BBAN']/*[name()='Id']": "bban_regenerate #text -c SE",
+    "/*[name()='Document']/*[name()='BkToCstmrStmt']/*[name()='Stmt']/*[name()='Acct']/*[name()='Id']/*[name()='Othr' and *[name()='SchmeNm']/*[name()='Cd']/text()='IBAN']/*[name()='Id']": "iban_regenerate #text",
+    "/*[name()='Document']/*[name()='BkToCstmrStmt']/*[name()='Stmt']/*[name()='Acct']/*[name()='Ownr']/*[name()='Nm']": "alphanum -l #len",
+    "//*[name()='NtryDtls']/*[name()='TxDtls']/*[name()='RltdPties']/*[name()='CdtrAcct']/*[name()='Id']/*[name()='IBAN']": {
+      "predef": "proc_iban"
+    },
+    "//*[name()='RltdPties']/*[name()='Cdtr']/*[name()='Nm']": "name_regenerate #text",
+    "//*[name()='Cdtr']/*[name()='Nm']": "alphanum -l #len",
+    "//*[name()='DbtrAgt']/*[name()='FinInstnId']/*[name()='Nm']": {
+      "gen_value": "alphanum -l #len",
+      "policy": "cached"
+    },
+    "//*[name()='AcctSvcrRef']": {
+      "gen_value": "alphanum -l #len",
+      "policy": "cached"
+    },
+    "//*[name()='Ustrd']": "alphanum -l #len",
+    "/*[name()='Document']/*[name()='BkToCstmrStmt']/*[name()='Stmt']/*[name()='Acct']/*[name()='Id']/*[name()='IBAN']": "iban_regenerate #text",
+    "//*[name()='PstlAdr']/*[name()='Dept']": "alphanum -l #len",
+    "//*[name()='PstlAdr']/*[name()='SubDept']": "alphanum -l #len",
+    "//*[name()='PstlAdr']/*[name()='StrtNm']": "alphanum -l #len",
+    "//*[name()='PstlAdr']/*[name()='BldgNb']": "num -l #len",
+    "//*[name()='PstlAdr']/*[name()='PstCd']": "num -l #len",
+    "//*[name()='PstlAdr']/*[name()='TwnNm']": "alphanum -l #len",
+    "//*[name()='PstlAdr']/*[name()='CtrySubDvsn']": "alphanum -l #len",
+    "//*[name()='PstlAdr']/*[name()='AdrLine']": "alphanum -l #len"
+  },
+  "conf": {
+    "comments": true,
+    "multiple_xmls_in_file": true
+  }
+}

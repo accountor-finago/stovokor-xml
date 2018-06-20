@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Document>
+	<foo>
+		<!-- Some data to be replaced -->
+		<author>
+			<name>Very Secret Name</name>
+			<personalId>123456</personalId>
+		</author>
+		<customers>
+			<customer>
+				<name>Jean-Luc Picard</name>
+				<personalId>1234567</personalId>
+				<bankAccount>FI10 4725 0961 0005 73</bankAccount>
+				<motto>To boldly go, where no one has gone before</motto>
+			</customer>
+			<customer>
+				<name>Worf</name>
+				<personalId>1234568</personalId>
+				<bankAccount>FI3647763216000644</bankAccount>
+				<motto>Qapla'</motto>
+			</customer>
+		</customers>
+		<!-- Some data to be kept -->
+		<bar>
+			<doNotChange>Some values, which should not be changed</doNotChange>
+			<localizations>
+				<!-- To check, that special chars will not be broken -->
+				<localization lang="FI">Joku hyvin tärkeä teksti suomeksi</localization>
+				<localization lang="PL">Jakiś bardzo ważny tekst po polsku</localization>
+			</localizations>
+		</bar>
+	</foo>
+</Document>

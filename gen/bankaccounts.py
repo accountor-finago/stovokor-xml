@@ -8,6 +8,7 @@ https://www.ecbs.org/iban.htm
 import logging
 import re
 
+from schwifty import BIC
 from schwifty import IBAN, registry
 from schwifty.iban import code_length
 
@@ -50,6 +51,17 @@ def generate_random_iban_bank(country: str, bank_code: str) -> str:
     """
     generator = __get_country_generator(country)
     return generator.generate_iban_for_bank(bank_code).compact
+
+
+def generate_random_iban_bic(country: str, bic: str) -> str:
+    """
+    Generates a random iban for a given country and BIC (note: works only for the countries supported by the Schwifty library)
+    """
+    bank_codes = BIC(bic).domestic_bank_codes
+    if not bank_codes:
+        raise Exception('BIC {0} is not supported. Use bank code or regenerate an existing account'.format(bic))
+    bank_code = randomization.choice(bank_codes)
+    return generate_random_iban_bank(country, bank_code)
 
 
 def regenerate_bban(country_code: str, old_bban: str) -> str:

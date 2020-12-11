@@ -6,6 +6,8 @@ import string
 
 __author__ = 'michal.toporowski'
 
+choice = random.choice
+
 
 def random_with_chars(length: int, allowed_chars: str):
     return ''.join(random.choice(allowed_chars) for i in range(length))

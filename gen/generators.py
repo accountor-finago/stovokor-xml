@@ -46,6 +46,7 @@ def create_parser() -> ArgumentParser:
                                                     'use iban_regenerate if you want only to obfuscate an existing iban.')
     parser_iban_random.set_defaults(func=generate_random_iban)
     parser_iban_random.add_argument('country_code', metavar='country_code', type=str, help='2-letter country code')
+    parser_iban_random.add_argument('-b', dest='bank_code', type=str, required=False, help='bank identifier (optional)')
     parser_bban_regenerate = subparsers.add_parser('bban_regenerate',
                                                    help='replaces account in an bban number keeping the country and bank')
     parser_bban_regenerate.set_defaults(func=regenerate_bban)
@@ -100,7 +101,10 @@ def generate_random_iban(args) -> str:
     Generates a random iban for a given country.
     Note, that a random bank code may not belong to any bank. If you want to regenerate an existing iban, use the regenerate_iban function.
     """
-    return bankaccounts.generate_random_iban(args.country_code)
+    if args.bank_code:
+        return bankaccounts.generate_random_iban_bank(args.country_code, args.bank_code)
+    else:
+        return bankaccounts.generate_random_iban(args.country_code)
 
 
 def regenerate_bban(args) -> str:

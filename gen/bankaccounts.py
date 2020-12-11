@@ -44,6 +44,14 @@ def generate_random_iban(country: str) -> str:
     return iban.compact
 
 
+def generate_random_iban_bank(country: str, bank_code: str) -> str:
+    """
+    Generates a random iban for a given country and bank code
+    """
+    generator = __get_country_generator(country)
+    return generator.generate_iban_for_bank(bank_code).compact
+
+
 def regenerate_bban(country_code: str, old_bban: str) -> str:
     """
     Regenerates an BBAN number (replaces the account number, while keeping the country and bank part)
